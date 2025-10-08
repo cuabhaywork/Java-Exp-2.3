@@ -1,0 +1,39 @@
+import java.util.*;
+import java.util.stream.Collectors;
+
+class Employee {
+    int id;
+    String name;
+    double salary;
+
+    Employee(int id, String name, double salary) {
+        this.id = id;
+        this.name = name;
+        this.salary = salary;
+    }
+
+    @Override
+    public String toString() {
+        return id + " - " + name + " - " + salary;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        List<Employee> employees = Arrays.asList(
+            new Employee(101, "Alice", 75000),
+            new Employee(102, "Bob", 50000),
+            new Employee(103, "Charlie", 90000)
+        );
+
+        System.out.println("Sorted by Salary:");
+        employees.stream()
+                 .sorted(Comparator.comparingDouble(e -> e.salary))
+                 .forEach(System.out::println);
+
+        System.out.println("\nSorted by Name:");
+        employees.stream()
+                 .sorted(Comparator.comparing(e -> e.name))
+                 .forEach(System.out::println);
+    }
+}
